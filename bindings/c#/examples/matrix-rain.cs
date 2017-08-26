@@ -11,6 +11,7 @@ namespace matrix_rain
         const int MAX_HEIGHT = 16;
         const int COLOR_STEP = 15;
         const int FRAME_STEP = 1;
+        const int MAX_FRAMES = 300;
 
         static int Main(string[] args)
         {
@@ -23,7 +24,7 @@ namespace matrix_rain
             int frame = 0;
             var stopwatch = new Stopwatch();
 
-            while (!Console.KeyAvailable) {
+            while (!Console.KeyAvailable && frame < MAX_FRAMES) {
                 stopwatch.Restart();
 
                 frame++;
@@ -64,11 +65,11 @@ namespace matrix_rain
                 
                 canvas = matrix.SwapOnVsync(canvas);
 
-                // force 30 FPS
+                // force 50 FPS
                 var elapsed= stopwatch.ElapsedMilliseconds;
-                if (elapsed < 33)
+                if (elapsed < 20)
                 {
-                    Thread.Sleep(33 - (int)elapsed);
+                    Thread.Sleep(20 - (int)elapsed);
                 }
             }
 

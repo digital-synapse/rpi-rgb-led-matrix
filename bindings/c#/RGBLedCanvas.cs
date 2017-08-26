@@ -130,6 +130,20 @@ namespace rpi_rgb_led_matrix_sharp
             a = b;
             b = tmp;
         }        
+
+        private void render(IEnumerable<Point> points, Color color)
+        {
+            foreach (var p in points)
+            {
+                SetPixel(p.X, p.Y, color);
+            }
+        }
+
+        public void DrawText(Font font, int x, int y, string text, Color color, int kerningBias = 0)
+        {
+            render(font.RenderText(x, y, text, kerningBias), color);
+        }
+
     }
 
     public struct Color
@@ -149,5 +163,10 @@ namespace rpi_rgb_led_matrix_sharp
         public byte R;
         public byte G;
         public byte B;
+
+        public static Color White => new Color(255,255,255);
+        public static Color Red => new Color(255, 0, 0);
+        public static Color Green => new Color(0, 255, 0);
+        public static Color Blue => new Color(0, 0, 255);
     }
 }

@@ -87,6 +87,12 @@ namespace rpi_rgb_led_matrix_sharp
             canvas._canvas = led_matrix_swap_on_vsync(matrix, canvas._canvas);
             return canvas;
         }
+
+        public Font LoadFont(string filepath)
+        {
+            return new Font(filepath);
+        }
+
         #region IDisposable Support
         private bool disposedValue = false;
 
